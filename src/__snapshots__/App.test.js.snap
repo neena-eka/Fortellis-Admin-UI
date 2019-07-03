@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<App>
+  <div
+    className="App"
+  >
+    <header
+      className="App-header"
+    >
+      <Grid>
+        <div
+          className="ag-theme-balham"
+          style={
+            Object {
+              "height": "500px",
+              "width": "1800px",
+            }
+          }
+        >
+          <AgGridReact
+            columnDefs={
+              Array [
+                Object {
+                  "field": "id",
+                  "headerName": "ID",
+                  "width": 300,
+                },
+                Object {
+                  "field": "name",
+                  "headerName": "Name",
+                },
+                Object {
+                  "field": "address",
+                  "headerName": "Address",
+                  "width": 300,
+                },
+                Object {
+                  "field": "phoneNumber",
+                  "headerName": "Phone Number",
+                },
+                Object {
+                  "field": "storeId",
+                  "headerName": "Store ID",
+                },
+                Object {
+                  "field": "storeName",
+                  "headerName": "Store Name",
+                },
+                Object {
+                  "field": "status",
+                  "headerName": "Status",
+                },
+                Object {
+                  "cellRendererFramework": [Function],
+                  "cellRendererParams": Object {
+                    "handleClick": [Function],
+                  },
+                  "field": "actions",
+                  "headerName": "Actions",
+                },
+              ]
+            }
+            rowData={Array []}
+          >
+            <div
+              style={
+                Object {
+                  "height": "100%",
+                }
+              }
+            />
+          </AgGridReact>
+        </div>
+      </Grid>
+    </header>
+  </div>
+</App>
+`;
