@@ -4,8 +4,9 @@ import {AgGridReact} from "ag-grid-react";
 import 'ag-grid/dist/styles/ag-grid.css';
 import 'ag-grid/dist/styles/ag-theme-balham.css';
 import {fetchEntityInfo} from "./fetchEntityInfo";
-import {postEntifyInfo} from "./fetchEntityInfo";
-
+import {postEntityInfo} from "./fetchEntityInfo";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 class ButtonCellRenderer extends React.Component {
   handleClick(newStatus) {
@@ -40,38 +41,43 @@ class Grid extends React.Component {
 
     this.state = {
       columnDefs: [
+        {headerName: "Date", field: "date", width: 90, sortable: true, comparator: this.dateSort, sortingOrder: ['desc', 'asc'], sort: 'desc'},
         {headerName: "ID", field: "id", width: 300},
-        {headerName: "Name", field: "name"},
+        {headerName: "Name", field: "name", filter: true},
         {headerName: "Address", field: "address", width: 300},
-        {headerName: "Phone Number", field: "phoneNumber"},
-        {headerName: "Store ID", field: "storeId"},
+        {headerName: "Phone Number", field: "phoneNumber", width: 140},
+        {headerName: "Store ID", field: "storeId", width: 110},
         {headerName: "Store Name", field: "storeName"},
-        {headerName: "Status", field: "status"},
+        {headerName: "Status", field: "status", width: 90},
         {
-          headerName: "Actions", field: "actions", cellRendererFramework: ButtonCellRenderer, cellRendererParams: {handleClick: this.updateRequest}
+          headerName: "Actions", field: "actions", cellRendererFramework: ButtonCellRenderer, cellRendererParams: {handleClick: this.updateRequest}, width: 150
         }
       ],
       rowData: []
     }
     this.setUp = this.setUp.bind(this);
     this.updateRequest = this.updateRequest.bind(this);
+    this.dateSort = this.dateSort.bind(this);
+    this.getValues = this.getValues.bind(this);
   }
 
-  async setUp() {
+  async setUp(filter) {
     let attributes = await fetchEntityInfo();
-    //await postEntifyInfo('f83eaff0-3f88-4ebd-9fc8-25f051632968', 'Accepted');
     attributes = attributes.split('||');
     let row=[];
-    for(let i = 0; i < attributes.length; i += 7) {
-      row.push({
-        id: attributes[i],
-        name: attributes[i + 1],
-        address: attributes[i + 2],
-        phoneNumber: attributes[i + 3],
-        storeId: attributes[i + 4],
-        storeName: attributes[i + 5],
-        status: attributes[i + 6]
-      });
+    for(let i = 0; i < attributes.length; i += 8) {
+      if(filter === 'All' || filter === attributes[i + 7]) {
+        row.push({
+          id: attributes[i],
+          name: attributes[i + 1],
+          address: attributes[i + 2],
+          phoneNumber: attributes[i + 3],
+          date: attributes[i + 4],
+          storeId: attributes[i + 5],
+          storeName: attributes[i + 6],
+          status: attributes[i + 7]
+        });
+      }
     }
     let attributeData=[];
     for(let i = 0; i < this.state.rowData.length; i++) {
@@ -79,21 +85,55 @@ class Grid extends React.Component {
     }
     this.setState({rowData: row,
       columnDefs: [
+        {headerName: "Date", field: "date", width: 90, sortable: true, comparator: this.dateSort, sortingOrder: ['desc', 'asc'], sort: 'desc'},
         {headerName: "ID", field: "id", width: 300},
-        {headerName: "Name", field: "name"},
+        {headerName: "Name", field: "name", filter: true},
         {headerName: "Address", field: "address", width: 300},
-        {headerName: "Phone Number", field: "phoneNumber"},
-        {headerName: "Store ID", field: "storeId"},
+        {headerName: "Phone Number", field: "phoneNumber", width: 140},
+        {headerName: "Store ID", field: "storeId", width: 110},
         {headerName: "Store Name", field: "storeName"},
-        {headerName: "Status", field: "status"},
+        {headerName: "Status", field: "status", width: 90},
         {
-          headerName: "Actions", field: "actions", cellRendererFramework: ButtonCellRenderer, cellRendererParams: {handleClick: this.updateRequest}
+          headerName: "Actions", field: "actions", cellRendererFramework: ButtonCellRenderer, cellRendererParams: {handleClick: this.updateRequest}, width: 150
         }
       ]});
   }
 
+  getValues() {
+    return ['Accepted', 'Declined', 'Pending'];
+  }
+
+  dateSort(valueA, valueB) {
+    let yearA = valueA.substring(6,8);
+    let monthA = valueA.substring(0,2);
+    let dayA = valueA.substring(3,5);
+    let yearB = valueB.substring(6,8);
+    let monthB = valueB.substring(0,2);
+    let dayB = valueB.substring(3,5);
+
+    if(yearA < yearB){
+      return -1;
+    }
+    if(yearA > yearB){
+      return 1;
+    }
+    if(monthA < monthB){
+      return -1;
+    }
+    if(monthA > monthB){
+      return 1;
+    }
+    if(dayA < dayB){
+      return -1;
+    }
+    if(dayA > dayB){
+      return 1;
+    }
+    return 0;
+  }
+
   componentDidMount() {
-    this.setUp();
+    this.setUp('Pending');
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -105,25 +145,49 @@ class Grid extends React.Component {
       rowData: this.state.rowData.map(request =>
         request.id === id ? {...request, status: newStatus} : request)
     });
-    await postEntifyInfo(id, newStatus);
+    await postEntityInfo(id, newStatus);
   }
 
 
   render() {
     return (
-        <div
-            className="ag-theme-balham"
-            style={{
-              height: '500px',
-              width: '1800px'
-            }}
-        >
-          <AgGridReact
-              columnDefs={this.state.columnDefs}
-              rowData={this.state.rowData}>
-          </AgGridReact>
+        <div>
+          <GridDropdown onChange={this.setUp}/>
+          <div
+              className="ag-theme-balham"
+              style={{
+                height: '500px',
+                width: '1580px'
+              }}
+          >
+            <AgGridReact
+                columnDefs={this.state.columnDefs}
+                rowData={this.state.rowData}>
+            </AgGridReact>
+          </div>
         </div>
     );
+  }
+}
+
+class GridDropdown extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {value: 'Pending'};
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({value: e.target.value});
+    this.props.onChange(this.state.value);
+  }
+
+  render() {
+    const options = ['Pending', 'Accepted', 'Declined', 'All'];
+    const defaultOption = options[0];
+
+    return <Dropdown options={options} onChange={this.handleChange} value={defaultOption} placeholder="Filter by"/>
   }
 }
 

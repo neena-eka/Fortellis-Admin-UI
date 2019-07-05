@@ -10,7 +10,7 @@ it('renders without crashing', () => {
   ReactDOM.unmountComponentAtNode(div);
 });
 
-describe("<App />", () => {
+it('works correctly', () => {
     const INPUT_TEXT = "Look at this test, isn't this neat";
     const event = {target: {value: INPUT_TEXT}};
 

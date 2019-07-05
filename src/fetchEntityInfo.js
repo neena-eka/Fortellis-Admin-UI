@@ -9,16 +9,9 @@ export const fetchEntityInfo = async ()=> {
     return !error ? message : error;
 };
 
-export const postEntifyInfo = async (requestId, newStatus)=> {
-    let searchParams = new URLSearchParams(`id=${requestId}&requestStatus=${newStatus}`)
-    const response = await fetch(`https://f79j2bnnmi.execute-api.us-east-2.amazonaws.com/test/entity-info`, {
-        method: 'POST',
-        body: JSON.stringify({
-            URLSearchParams: searchParams
-        }),
-        //headers: {
-          //  "Access-Control-Allow-Origin": "*"
-        //}
+export const postEntityInfo = async (requestId, newStatus)=> {
+    const response = await fetch(`https://f79j2bnnmi.execute-api.us-east-2.amazonaws.com/test/entity-info?id=${requestId}&requestStatus=${newStatus}`, {
+        method: 'POST'
     });
     const error =
         response.status !== 202
