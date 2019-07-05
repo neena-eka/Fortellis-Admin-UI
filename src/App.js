@@ -152,7 +152,9 @@ class Grid extends React.Component {
   render() {
     return (
         <div>
-          <GridDropdown onChange={this.setUp}/>
+          <div style={{width:'170px', height: '50px'}}>
+            <GridDropdown style={{fontSize:'10px'}} onChange={this.setUp}/>
+          </div>
           <div
               className="ag-theme-balham"
               style={{
@@ -174,20 +176,20 @@ class GridDropdown extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {value: 'Pending'};
+    this.state = {value:''};
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
-    this.setState({value: e.target.value});
-    this.props.onChange(this.state.value);
+    this.props.onChange(e.value);
+    this.setState({value: e.value});
   }
 
   render() {
     const options = ['Pending', 'Accepted', 'Declined', 'All'];
-    const defaultOption = options[0];
+    //const defaultOption = options[0];
 
-    return <Dropdown options={options} onChange={this.handleChange} value={defaultOption} placeholder="Filter by"/>
+    return <Dropdown options={options} onChange={this.handleChange} value={this.state.value} placeholder="Filter by"/>
   }
 }
 
