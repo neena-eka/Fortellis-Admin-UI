@@ -10,8 +10,13 @@ export const fetchEntityInfo = async ()=> {
 };
 
 export const postEntityInfo = async (requestId, newStatus)=> {
-    const response = await fetch(`https://f79j2bnnmi.execute-api.us-east-2.amazonaws.com/test/entity-info?id=${requestId}&requestStatus=${newStatus}`, {
-        method: 'POST'
+    const response = await fetch(`https://f79j2bnnmi.execute-api.us-east-2.amazonaws.com/test/entity-info`, {
+        method: 'PATCH',
+        'Access-Control-Allow-Methods': 'PATCH',
+        body: JSON.stringify({
+            id: requestId,
+            requestStatus: newStatus
+        })
     });
     const error =
         response.status !== 202
