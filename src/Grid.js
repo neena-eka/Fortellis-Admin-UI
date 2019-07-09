@@ -22,7 +22,6 @@ export class Grid extends React.Component {
                 }
             ],
             rowData: [],
-            //overlayNoRowsTemplate: "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">This is a custom 'no rows' overlay</span>"
         }
         this.setUp = this.setUp.bind(this);
         this.updateRequest = this.updateRequest.bind(this);
@@ -31,19 +30,18 @@ export class Grid extends React.Component {
 
     async setUp(filter) {
         let attributes = await fetchEntityInfo();
-        attributes = attributes.split('||');
         let row=[];
-        for(let i = 0; i < attributes.length; i += 8) {
-            if(filter === 'All' || filter === attributes[i + 7]) {
+        for(let i = 0; i < attributes.length; i ++) {
+            if(filter === 'All' || filter === attributes[i].requestStatus.S) {
                 row.push({
-                    id: attributes[i],
-                    name: attributes[i + 1],
-                    address: attributes[i + 2],
-                    phoneNumber: attributes[i + 3],
-                    date: attributes[i + 4],
-                    storeId: attributes[i + 5],
-                    storeName: attributes[i + 6],
-                    status: attributes[i + 7]
+                    id: attributes[i].id.S,
+                    name: attributes[i].name.S,
+                    address: attributes[i].address.S,
+                    phoneNumber: attributes[i].phoneNumber.S,
+                    date: attributes[i].date.S,
+                    storeId: attributes[i].storeId.S,
+                    storeName: attributes[i].storeName.S,
+                    status: attributes[i].requestStatus.S
                 });
             }
         }
@@ -63,8 +61,6 @@ export class Grid extends React.Component {
                     headerName: "Actions", field: "actions", cellRendererFramework: ButtonCellRenderer, cellRendererParams: {handleClick: this.updateRequest}, width: 150
                 }
             ],
-            //overlayNoRowsTemplate: "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">This is a custom 'no rows' overlay</span>"
-
         });
 
     }
@@ -77,25 +73,10 @@ export class Grid extends React.Component {
         let monthB = valueB.substring(0,2);
         let dayB = valueB.substring(3,5);
 
-        if(yearA < yearB){
-            return -1;
-        }
-        if(yearA > yearB){
-            return 1;
-        }
-        if(monthA < monthB){
-            return -1;
-        }
-        if(monthA > monthB){
-            return 1;
-        }
-        if(dayA < dayB){
-            return -1;
-        }
-        if(dayA > dayB){
-            return 1;
-        }
-        return 0;
+        let dateA = yearA + monthA + dayA;
+        let dateB = yearB + monthB + dayB;
+
+        return dateA - dateB;
     }
 
     componentDidMount() {

@@ -5,7 +5,7 @@ export const fetchEntityInfo = async ()=> {
             ? "Search not found"
             : null;
 
-    const message = await response.text();
+    const message = await response.json();
     return !error ? message : error;
 };
 
