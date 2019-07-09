@@ -13,7 +13,7 @@ export class ButtonCellRenderer extends React.Component {
             return <button onClick={() => this.handleClick('Declined')}>Remove Access</button>;
         }
         if(status === 'Declined'){
-            return <button hidden={true}>hi</button>;
+            return <button hidden={true}>https://4.bp.blogspot.com/-7kbrqnXfuLk/WqR6bZg882I/AAAAAAAAAkM/0vvnQrIZAwk9ijiTvfF8m5pWpBSJsKuFQCLcBGAs/s1600/Screen%2BShot%2B2018-03-10%2Bat%2B7.37.12%2BPM.png</button>;
         }
         if(status === 'Pending') {
             return (
