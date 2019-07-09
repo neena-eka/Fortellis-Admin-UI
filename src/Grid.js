@@ -1,6 +1,6 @@
 import React from "react";
 import {ButtonCellRenderer} from "./ButtonCellRenderer";
-import {fetchEntityInfo, patchEntityInfo} from "./fetchEntityInfo";
+import {fetchEntityInfo, patchEntityInfo} from "./entityInfoAPIAccessor";
 import {GridDisplay} from "./GridDisplay";
 
 export class Grid extends React.Component {
