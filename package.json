@@ -8,7 +8,6 @@
     "ag-grid-community": "^21.0.1",
     "ag-grid-enterprise": "^21.0.1",
     "ag-grid-react": "^21.0.1",
-    "babel-loader": "^8.0.6",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.5",
@@ -22,7 +21,10 @@
     "typescript": "*"
   },
   "scripts": {
-    "test": "jest"
+    "start": "node_modules/.bin/react-scripts start",
+    "build": "node_modules/.bin/react-scripts build",
+    "test": "jest",
+    "eject": "node_modules/.bin/react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

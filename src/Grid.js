@@ -1,6 +1,6 @@
 import React from "react";
 import {ButtonCellRenderer} from "./ButtonCellRenderer";
-import {fetchEntityInfo, postEntityInfo} from "./fetchEntityInfo";
+import {fetchEntityInfo, patchEntityInfo} from "./fetchEntityInfo";
 import {GridDisplay} from "./GridDisplay";
 
 export class Grid extends React.Component {
@@ -111,7 +111,7 @@ export class Grid extends React.Component {
             rowData: this.state.rowData.map(request =>
                 request.id === id ? {...request, status: newStatus} : request)
         });
-        await postEntityInfo(id, newStatus);
+        await patchEntityInfo(id, newStatus);
     }
 
 

@@ -9,7 +9,7 @@ export const fetchEntityInfo = async ()=> {
     return !error ? message : error;
 };
 
-export const postEntityInfo = async (requestId, newStatus)=> {
+export const patchEntityInfo = async (requestId, newStatus)=> {
     const response = await fetch(`https://f79j2bnnmi.execute-api.us-east-2.amazonaws.com/test/entity-info`, {
         method: 'PATCH',
         'Access-Control-Allow-Methods': 'PATCH',
