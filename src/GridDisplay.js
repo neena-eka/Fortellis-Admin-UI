@@ -14,7 +14,7 @@ export const GridDisplay = (props) => {
                 className="ag-theme-balham"
                 style={{
                     height: '500px',
-                    width: '1580px'
+                    width: '1710px'
                 }}
             >
                 <AgGridReact
