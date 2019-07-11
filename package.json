@@ -2,6 +2,7 @@
   "name": "dc.fortellisadmin.ui",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@babel/core": "^7.0.0-0",
     "ag-grid": "^18.1.2",
