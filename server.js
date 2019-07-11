@@ -11,7 +11,7 @@ let path = require('path');
 
 app.use(express.static(path.join(__dirname, '/build')));
 
-let port = process.env.PORT || 3000; // set our port
+let port = process.env.PORT || 8080; // set our port
 
 // ROUTES FOR OUR API
 // =============================================================================

@@ -15,5 +15,5 @@ RUN npm run-script build
 WORKDIR /usr/src/app
 
 USER default
-EXPOSE 3000
+EXPOSE 8080
 CMD ["node", "server.js"]
