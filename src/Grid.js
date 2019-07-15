@@ -24,7 +24,7 @@ export class Grid extends React.Component {
                 },
                 {headerName: "Solution ID", field: "solutionId", hide: true}
             ],
-            rowData: [],
+            rowData: []
         }
         this.setUp = this.setUp.bind(this);
         this.updateRequest = this.updateRequest.bind(this);
