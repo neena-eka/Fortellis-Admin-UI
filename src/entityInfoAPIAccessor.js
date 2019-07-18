@@ -1,5 +1,5 @@
 export const fetchEntityInfo = async () => {
-    const response = await fetch(`https://f79j2bnnmi.execute-api.us-east-2.amazonaws.com/test/entity-info`);
+    const response = await fetch(`http://api-int.dit.connectcdk.com/api/fo-dc-fortellisadmin-api/v1/admin/requests`);
     const error =
         response.status !== 200
             ? "Information not found"
@@ -11,7 +11,7 @@ export const fetchEntityInfo = async () => {
 };
 
 export const patchEntityInfo = async (requestId, newStatus) => {
-    const response = await fetch(`https://f79j2bnnmi.execute-api.us-east-2.amazonaws.com/test/entity-info`, {
+    const response = await fetch(`http://api-int.dit.connectcdk.com/api/fo-dc-fortellisadmin-api/v1/admin/update-request`, {
         method: 'PATCH',
         'Access-Control-Allow-Methods': 'PATCH',
         body: JSON.stringify({

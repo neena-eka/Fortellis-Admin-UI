@@ -35,19 +35,19 @@ export class Grid extends React.Component {
     async setUp(filter) {
         let attributes = await fetchEntityInfo();
         let row=[];
-        for(let i = 0; i < attributes.length; i ++) {
-            if(filter === 'All' || filter === attributes[i].requestStatus.S) {
+        for(let i = 0; i < attributes.items.length; i ++) {
+            if(filter === 'All' || filter === attributes.items[i].requestStatus.s) {
                 row.push({
-                    id: attributes[i].id.S,
-                    name: attributes[i].name.S,
-                    address: attributes[i].address.S,
-                    phoneNumber: attributes[i].phoneNumber.S,
-                    date: attributes[i].date.S,
-                    storeId: attributes[i].storeId.S,
-                    storeName: attributes[i].storeName.S,
-                    status: attributes[i].requestStatus.S,
-                    solutionName: attributes[i].solutionName.S,
-                    solutionId: attributes[i].solutionId.S,
+                    id: attributes.items[i].id.s,
+                    name: attributes.items[i].name.s,
+                    address: attributes.items[i].address.s,
+                    phoneNumber: attributes.items[i].phoneNumber.s,
+                    date: attributes.items[i].date.s,
+                    storeId: attributes.items[i].storeId.s,
+                    storeName: attributes.items[i].storeName.s,
+                    status: attributes.items[i].requestStatus.s,
+                    solutionName: attributes.items[i].solutionName.s,
+                    solutionId: attributes.items[i].solutionId.s,
                 });
             }
         }
@@ -78,17 +78,17 @@ export class Grid extends React.Component {
     async displayInfo(solutionId) {
         let attributes = await fetchEntityInfo();
         let row = {};
-        for(let i=0; i<attributes.length; i++){
-            if(solutionId === attributes[i].solutionId.S){
-                row = attributes[i];
+        for(let i=0; i<attributes.items.length; i++){
+            if(solutionId === attributes.items[i].solutionId.s){
+                row = attributes.items[i];
             }
         }
-        let data = 'Solution ID: ' + row.solutionId.S + '\n'
-        + 'Solution Name: ' + row.solutionName.S + '\n'
-        + 'Developer: ' + row.developer.S + '\n'
-        + 'Contact Email: ' + row.email.S + '\n'
-        + 'Subscription ID: ' + row.subscriptionId.S + '\n'
-        + 'Connection ID: ' + row.connectionId.S;
+        let data = 'Solution ID: ' + row.solutionId.s + '\n'
+        + 'Solution Name: ' + row.solutionName.s + '\n'
+        + 'Developer: ' + row.developer.s + '\n'
+        + 'Contact Email: ' + row.email.s + '\n'
+        + 'Subscription ID: ' + row.subscriptionId.s + '\n'
+        + 'Connection ID: ' + row.connectionId.s;
         window.alert(data);
     }
 
