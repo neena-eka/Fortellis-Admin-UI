@@ -4,18 +4,19 @@
 }
 
 html, body {
-  height: 100%
+  height: 100%;
+  width: 100%;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #9b9b9b;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #000000;
   height: inherit;
 }
 .GridDropdown {
@@ -34,21 +35,52 @@ html, body {
   font-size: 12px;
 }
 
+.ag-theme-balham {
+  height: inherit;
+}
+
+.popup-overlay {
+  overflow: visible;
+  width: 100%;
+}
+
+.ag-cell {
+  overflow: visible;
+}
+
+.container {
+  width: 100%;
+  align-items: center;
+}
+
+.popupdiv {
+  width: 100%;
+  height: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
 .Display {
   width: 100%;
-  max-width: 1720px;
-  height:inherit;
+  max-width: 1712px;
+  height: inherit !important;
+  margin: auto;
+}
+
+.ag-root-wrapper-body.ag-layout-normal {
+  height: auto !important;
 }
 
 .ag-body-viewport-wrapper.ag-layout-normal {
   width: 100%;
   overflow-y: scroll;
 }
+
 ::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 8px;
   height: 8px;
 }
+
 ::-webkit-scrollbar-thumb {
   border-radius: 4px;
   background-color: rgba(0,0,0,.5);

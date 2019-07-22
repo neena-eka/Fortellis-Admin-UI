@@ -3,6 +3,7 @@ import {ButtonCellRenderer} from "./ButtonCellRenderer";
 import {fetchEntityInfo, patchEntityInfo} from "./entityInfoAPIAccessor";
 import {GridDisplay} from "./GridDisplay";
 import {InfoRenderer} from "./InfoRenderer";
+import Popup from "reactjs-popup";
 
 export class Grid extends React.Component {
     constructor(props) {
@@ -24,7 +25,8 @@ export class Grid extends React.Component {
                 },
                 {headerName: "Solution ID", field: "solutionId", hide: true}
             ],
-            rowData: []
+            rowData: [],
+            data: ""
         }
         this.setUp = this.setUp.bind(this);
         this.updateRequest = this.updateRequest.bind(this);
@@ -75,6 +77,7 @@ export class Grid extends React.Component {
                 },
                 {headerName: "Solution ID", field: "solutionId", hide: true}
             ],
+            data: ""
         });
 
     }
@@ -87,13 +90,15 @@ export class Grid extends React.Component {
                 row = attributes.items[i];
             }
         }
-        let data = 'Solution ID: ' + row.solutionId.s + '\n'
-        + 'Solution Name: ' + row.solutionName.s + '\n'
-        + 'Developer: ' + row.developer.s + '\n'
-        + 'Contact Email: ' + row.email.s + '\n'
-        + 'Subscription ID: ' + row.subscriptionId.s + '\n'
-        + 'Connection ID: ' + row.connectionId.s;
-        window.alert(data);
+        let data = ['Solution ID: ' + row.solutionId.s,
+         'Solution Name: ' + row.solutionName.s,
+         'Developer: ' + row.developer.s,
+         'Contact Email: ' + row.email.s,
+         'Subscription ID: ' + row.subscriptionId.s,
+         'Connection ID: ' + row.connectionId.s];
+        this.setState({data})
+
+        document.getElementById('popup-button').click();
     }
 
     dateSort(valueA, valueB) {
@@ -129,7 +134,7 @@ export class Grid extends React.Component {
 
     render() {
         return (
-            <GridDisplay setUp={this.setUp} rowData={this.state.rowData} columnDefs={this.state.columnDefs}/>
+            <GridDisplay data={this.state.data} setUp={this.setUp} rowData={this.state.rowData} columnDefs={this.state.columnDefs}/>
         );
     }
 }
