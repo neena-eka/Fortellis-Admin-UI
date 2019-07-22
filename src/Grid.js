@@ -34,6 +34,10 @@ export class Grid extends React.Component {
 
     async setUp(filter) {
         let attributes = await fetchEntityInfo();
+        if(attributes === "Information not found") {
+            console.log(attributes);
+            return;
+        }
         let row=[];
         for(let i = 0; i < attributes.items.length; i ++) {
             if(filter === 'All' || filter === attributes.items[i].requestStatus.s) {

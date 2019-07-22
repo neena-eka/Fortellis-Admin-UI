@@ -12,9 +12,7 @@ export const GridDisplay = (props) => {
             </div>
             <div
                 className="ag-theme-balham"
-                style={{
-                    height: '500px',
-                }}
+                style={{height: "500px"}}
             >
                 <AgGridReact
                     className="Grid"

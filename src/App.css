@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  height: inherit;
+}
+
+html, body {
+  height: 100%
 }
 
 .App-header {
@@ -11,8 +16,8 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  height: inherit;
 }
-
 .GridDropdown {
   font-size: 12px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
@@ -32,6 +37,7 @@
 .Display {
   width: 100%;
   max-width: 1720px;
+  height:inherit;
 }
 
 .ag-body-viewport-wrapper.ag-layout-normal {
