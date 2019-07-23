@@ -3,7 +3,6 @@ import React from "react";
 import {AgGridReact} from "ag-grid-react";
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-import Popup from "reactjs-popup";
 import {GridPopup} from "./GridPopup";
 
 export const GridDisplay = (props) => {

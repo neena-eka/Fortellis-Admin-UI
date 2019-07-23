@@ -26,6 +26,3 @@ export const patchEntityInfo = async (requestId, newStatus) => {
     const message = await response.text();
     console.log(!error ? message : error);
 };
-
-//link for local java microservice
-//http://127.0.0.1:8080/admin

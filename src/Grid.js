@@ -3,7 +3,6 @@ import {ButtonCellRenderer} from "./ButtonCellRenderer";
 import {fetchEntityInfo, patchEntityInfo} from "./entityInfoAPIAccessor";
 import {GridDisplay} from "./GridDisplay";
 import {InfoRenderer} from "./InfoRenderer";
-import Popup from "reactjs-popup";
 
 export class Grid extends React.Component {
     constructor(props) {
@@ -23,10 +22,9 @@ export class Grid extends React.Component {
                 {
                     headerName: "Actions", field: "actions", cellRendererFramework: ButtonCellRenderer, cellRendererParams: {handleClick: this.updateRequest}, width: 150
                 },
-                {headerName: "Solution ID", field: "solutionId", hide: true}
             ],
             rowData: [],
-            data: ""
+            data: []
         }
         this.setUp = this.setUp.bind(this);
         this.updateRequest = this.updateRequest.bind(this);
@@ -54,12 +52,15 @@ export class Grid extends React.Component {
                     status: attributes.items[i].requestStatus.s,
                     solutionName: attributes.items[i].solutionName.s,
                     solutionId: attributes.items[i].solutionId.s,
+                    developer: attributes.items[i].developer.s,
+                    email: attributes.items[i].email.s,
+                    subscriptionId: attributes.items[i].subscriptionId.s,
+                    connectionId: attributes.items[i].connectionId.s
                 });
             }
         }
 
         this.setState({
-            rowData: row,
             columnDefs: [
                 {headerName: "Date", field: "date", width: 90, sortable: true, comparator: this.dateSort, sortingOrder: ['desc', 'asc'], sort: 'desc'},
                 {
@@ -75,27 +76,27 @@ export class Grid extends React.Component {
                 {
                     headerName: "Actions", field: "actions", cellRendererFramework: ButtonCellRenderer, cellRendererParams: {handleClick: this.updateRequest}, width: 150
                 },
-                {headerName: "Solution ID", field: "solutionId", hide: true}
             ],
-            data: ""
+            rowData: row,
+            data: []
         });
 
     }
 
-    async displayInfo(solutionId) {
-        let attributes = await fetchEntityInfo();
+    displayInfo(solutionId) {
+        let attributes = this.state.rowData;
         let row = {};
-        for(let i=0; i<attributes.items.length; i++){
-            if(solutionId === attributes.items[i].solutionId.s){
-                row = attributes.items[i];
+        for(let i=0; i<attributes.length; i++){
+            if(solutionId === attributes[i].solutionId){
+                row = attributes[i];
             }
         }
-        let data = ['Solution ID: ' + row.solutionId.s,
-         'Solution Name: ' + row.solutionName.s,
-         'Developer: ' + row.developer.s,
-         'Contact Email: ' + row.email.s,
-         'Subscription ID: ' + row.subscriptionId.s,
-         'Connection ID: ' + row.connectionId.s];
+        let data = ['Solution ID: ' + row.solutionId,
+         'Solution Name: ' + row.solutionName,
+         'Developer: ' + row.developer,
+         'Contact Email: ' + row.email,
+         'Subscription ID: ' + row.subscriptionId,
+         'Connection ID: ' + row.connectionId];
         this.setState({data})
 
         document.getElementById('popup-button').click();
