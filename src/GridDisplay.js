@@ -22,7 +22,10 @@ export const GridDisplay = (props) => {
                         className="Grid"
                         columnDefs={props.columnDefs}
                         rowData={props.rowData}
-                        suppressDragLeaveHidesColumns={true}>
+                        suppressDragLeaveHidesColumns={true}
+                        pagination
+                        paginationPageSize={30}
+                    >
                     </AgGridReact>
                 </div>
             </div>
