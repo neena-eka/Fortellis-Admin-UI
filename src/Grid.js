@@ -62,7 +62,10 @@ export class Grid extends React.Component {
             }
         }
         if(row.length === 0) {
-            let data = ["", "", "No requests of this status", "", "", ""];
+            let data = ["", "", "No " + filter.toLowerCase() + " requests", "", "", ""];
+            if(attributes.items.length === 0) {
+                data = ["", "", "There are no requests", "", "", ""];
+            }
             this.setState({data})
             document.getElementById('popup-button').click();
         }
@@ -123,7 +126,7 @@ export class Grid extends React.Component {
     }
 
     componentDidMount() {
-        this.setUp('All');
+        this.setUp('Pending');
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
