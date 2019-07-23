@@ -3,8 +3,11 @@
   height: inherit;
 }
 
-html, body {
-  height: auto;
+html{
+  width: 100%;
+}
+body{
+  height:100%; /* force the BODY element to match the height of the HTML element */
   width: 100%;
 }
 
@@ -52,7 +55,8 @@ html, body {
   width: 100%;
   align-items: center;
   position: absolute;
-  top: 30px;
+  top: 60px;
+  background-color: #9b9b9b;
 }
 
 .popupdiv {
@@ -66,6 +70,8 @@ html, body {
   max-width: 1712px;
   height: inherit !important;
   margin: auto;
+  position: relative;
+  bottom: 30px;
 }
 
 .ag-root-wrapper-body.ag-layout-normal {
