@@ -25,6 +25,7 @@ export const GridDisplay = (props) => {
                         suppressDragLeaveHidesColumns={true}
                         pagination
                         paginationPageSize={30}
+                        suppressNoRowsOverlay
                     >
                     </AgGridReact>
                 </div>

@@ -39,25 +39,32 @@ export class Grid extends React.Component {
             return;
         }
         let row=[];
+        let item;
         for(let i = 0; i < attributes.items.length; i ++) {
             if(filter === 'All' || filter === attributes.items[i].requestStatus.s) {
+                item = attributes.items[i];
                 row.push({
-                    id: attributes.items[i].id.s,
-                    name: attributes.items[i].name.s,
-                    address: attributes.items[i].address.s,
-                    phoneNumber: attributes.items[i].phoneNumber.s,
-                    date: attributes.items[i].date.s,
-                    storeId: attributes.items[i].storeId.s,
-                    storeName: attributes.items[i].storeName.s,
-                    status: attributes.items[i].requestStatus.s,
-                    solutionName: attributes.items[i].solutionName.s,
-                    solutionId: attributes.items[i].solutionId.s,
-                    developer: attributes.items[i].developer.s,
-                    email: attributes.items[i].email.s,
-                    subscriptionId: attributes.items[i].subscriptionId.s,
-                    connectionId: attributes.items[i].connectionId.s
+                    id: item.id.s,
+                    name: item.name.s,
+                    address: item.address.s,
+                    phoneNumber: item.phoneNumber.s,
+                    date: item.date.s,
+                    storeId: item.storeId.s,
+                    storeName: item.storeName.s,
+                    status: item.requestStatus.s,
+                    solutionName: item.solutionName.s,
+                    solutionId: item.solutionId.s,
+                    developer: item.developer.s,
+                    email: item.email.s,
+                    subscriptionId: item.subscriptionId.s,
+                    connectionId: item.connectionId.s
                 });
             }
+        }
+        if(row.length === 0) {
+            let data = ["", "", "No requests of this status", "", "", ""];
+            this.setState({data})
+            document.getElementById('popup-button').click();
         }
 
         this.setState({
@@ -78,7 +85,6 @@ export class Grid extends React.Component {
                 },
             ],
             rowData: row,
-            data: []
         });
 
     }
