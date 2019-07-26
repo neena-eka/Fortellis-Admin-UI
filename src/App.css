@@ -5,10 +5,12 @@
 
 html{
   width: 100%;
+  background-color: #9b9b9b;
 }
 body{
   height:100%; /* force the BODY element to match the height of the HTML element */
   width: 100%;
+  background-color: #9b9b9b;
 }
 
 .App-header {
@@ -52,11 +54,13 @@ body{
 }
 
 .container {
-  width: 100%;
+  width: 100% !important;
+  max-width: 1257px !important;
+  top: 55px;
   align-items: center;
   position: absolute;
-  top: 60px;
   background-color: #9b9b9b;
+  padding: 0 !important;
 }
 
 .popupdiv {
@@ -67,7 +71,7 @@ body{
 
 .Display {
   width: 100%;
-  max-width: 1712px;
+  max-width: 1272px !important;
   height: inherit !important;
   margin: auto;
   position: relative;
@@ -93,4 +97,61 @@ body{
   border-radius: 4px;
   background-color: rgba(0,0,0,.5);
   box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.nav {
+  position: relative;
+  margin: 0  auto !important;
+  background-color: white;
+}
+
+.nav-bar {
+  align-items: center;
+}
+
+.nav a{
+  color: black;
+}
+
+.nav-div {
+  background-color: #9b9b9b;
+  position: relative;
+}
+
+
+
+.action-button {
+  height: 24px !important;
+  align-items: flex-start !important;
+  text-align: center !important;
+  color: buttontext !important;
+  /*background-color: buttonface !important;*/
+  box-sizing: border-box !important;
+  padding: 2px 6px 3px !important;
+  border-width: 2px !important;
+  border-style: outset !important;
+  border-color: buttonface !important;
+  border-image: initial !important;
+  text-rendering: auto !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  text-transform: none !important;
+  text-indent: 0 !important;
+  text-shadow: none !important;
+  display: inline-block !important;
+  margin: 0 !important;
+  font: 400 11px system-ui !important;
+  background-color: rgba(155, 155, 155, 0.16) !important;
+}
+
+.action-button:focus {
+  box-shadow: none !important;
+}
+
+.action-button:active {
+  border: 1px solid black !important;
+}
+
+Button {
+  height: 25px;
 }

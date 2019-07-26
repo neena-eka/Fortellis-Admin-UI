@@ -11,16 +11,14 @@ export class Grid extends React.Component {
         this.state = {
             columnDefs: [
                 {headerName: "Date", field: "date", width: 90, sortable: true, comparator: this.dateSort, sortingOrder: ['desc', 'asc'], sort: 'desc'},
-                {headerName: "Solution Name", field: "solutionName", cellRendererFramework: InfoRenderer, cellRendererParams: {handleClick: this.displayInfo}},
+                {headerName: "Solution Name", field: "solutionName", cellRendererFramework: InfoRenderer, cellRendererParams: {handleClick: this.displaySolutionInfo}},
+                {headerName: "Name", field: "name", filter: true, cellRendererFramework: InfoRenderer, cellRendererParams: {handleClick: this.displayContactInfo}},
                 {headerName: "ID", field: "id", width: 300},
-                {headerName: "Name", field: "name", filter: true},
-                {headerName: "Address", field: "address", width: 300},
-                {headerName: "Phone Number", field: "phoneNumber", width: 140},
-                {headerName: "Store ID", field: "storeId", width: 110},
                 {headerName: "Store Name", field: "storeName", width: 130},
+                {headerName: "Store ID", field: "storeId", width: 110},
                 {headerName: "Status", field: "status", width: 90},
                 {
-                    headerName: "Actions", field: "actions", cellRendererFramework: ButtonCellRenderer, cellRendererParams: {handleClick: this.updateRequest}, width: 150
+                    headerName: "Actions", field: "actions", cellRendererFramework: ButtonCellRenderer, cellRendererParams: {handleClick: this.updateRequest}, width: 135
                 },
             ],
             rowData: [],
@@ -29,7 +27,8 @@ export class Grid extends React.Component {
         this.setUp = this.setUp.bind(this);
         this.updateRequest = this.updateRequest.bind(this);
         this.dateSort = this.dateSort.bind(this);
-        this.displayInfo = this.displayInfo.bind(this);
+        this.displaySolutionInfo = this.displaySolutionInfo.bind(this);
+        this.displayContactInfo = this.displayContactInfo.bind(this);
     }
 
     async setUp(filter) {
@@ -74,17 +73,15 @@ export class Grid extends React.Component {
             columnDefs: [
                 {headerName: "Date", field: "date", width: 90, sortable: true, comparator: this.dateSort, sortingOrder: ['desc', 'asc'], sort: 'desc'},
                 {
-                    headerName: "Solution Name", field: "solutionName", cellRendererFramework: InfoRenderer, cellRendererParams: {handleClick: this.displayInfo}
+                    headerName: "Solution Name", field: "solutionName", cellRendererFramework: InfoRenderer, cellRendererParams: {handleClick: this.displaySolutionInfo}
                 },
+                {headerName: "Name", field: "name", filter: true, cellRendererFramework: InfoRenderer, cellRendererParams: {handleClick: this.displayContactInfo}},
                 {headerName: "ID", field: "id", width: 300},
-                {headerName: "Name", field: "name", filter: true},
-                {headerName: "Address", field: "address", width: 300},
-                {headerName: "Phone Number", field: "phoneNumber", width: 140},
-                {headerName: "Store ID", field: "storeId", width: 110},
                 {headerName: "Store Name", field: "storeName", width: 130},
+                {headerName: "Store ID", field: "storeId", width: 110},
                 {headerName: "Status", field: "status", width: 90},
                 {
-                    headerName: "Actions", field: "actions", cellRendererFramework: ButtonCellRenderer, cellRendererParams: {handleClick: this.updateRequest}, width: 150
+                    headerName: "Actions", field: "actions", cellRendererFramework: ButtonCellRenderer, cellRendererParams: {handleClick: this.updateRequest}, width: 135
                 },
             ],
             rowData: row,
@@ -92,7 +89,7 @@ export class Grid extends React.Component {
 
     }
 
-    displayInfo(solutionId) {
+    displaySolutionInfo(solutionId) {
         let attributes = this.state.rowData;
         let row = {};
         for(let i=0; i<attributes.length; i++){
@@ -103,9 +100,25 @@ export class Grid extends React.Component {
         let data = ['Solution ID: ' + row.solutionId,
          'Solution Name: ' + row.solutionName,
          'Developer: ' + row.developer,
-         'Contact Email: ' + row.email,
          'Subscription ID: ' + row.subscriptionId,
          'Connection ID: ' + row.connectionId];
+        this.setState({data})
+
+        document.getElementById('popup-button').click();
+    }
+
+    displayContactInfo(solutionId) {
+        let attributes = this.state.rowData;
+        let row = {};
+        for(let i=0; i<attributes.length; i++){
+            if(solutionId === attributes[i].solutionId){
+                row = attributes[i];
+            }
+        }
+        let data = ['Name: ' + row.name,
+            'Phone Number: ' + row.phoneNumber,
+            'Contact Email: ' + row.email,
+            'Address: ' + row.address];
         this.setState({data})
 
         document.getElementById('popup-button').click();
