@@ -6,11 +6,11 @@ export const DealershipListDisplay = (props) => {
         <div className="dealership-display">
             <h1>Dealerships</h1>
             <Nav className="flex-column">
-                <Nav.Link href="/">Excellent Car Dealership</Nav.Link>
+                <Nav.Link href={`${props.url}/hi`}>{window.location.pathname}</Nav.Link>
                 <Nav.Link href="/">Dealerships</Nav.Link>
+                <Nav.Link href="/requests">Hi</Nav.Link>
                 <Nav.Link href="/requests">Requests</Nav.Link>
-                <Nav.Link href="/requests">Requests</Nav.Link>
-                <Nav.Link href="/requests">Requests</Nav.Link>
+            <Nav.Link href="/requests">Hello</Nav.Link>
             </Nav>
         </div>
     )

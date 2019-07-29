@@ -9,6 +9,8 @@ import * as serviceWorker from './serviceWorker';
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
+const baseURL = window.location.origin + '/' + window.location.pathname.substring(0, window.location.pathname.indexOf('/dealerships'));
+
 const routing = (
     <div className="nav-div">
         <link
@@ -31,7 +33,7 @@ const routing = (
             </ul>*/}
            <Navbar className="nav-bar">
                 <Nav className="nav">
-                    <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href={baseURL}>Home</Nav.Link>
                     <Nav.Link href="/dealerships">Dealerships</Nav.Link>
                     {/*<Nav.Link href="/requests">Requests</Nav.Link>
                     <Nav.Link href="/requests">Requests</Nav.Link>
@@ -39,7 +41,11 @@ const routing = (
                 </Nav>
             </Navbar>
             <Route exact path="/" component={App} />
-            <Route exact path="/dealerships" component={DealershipListApp} />
+            <Route exact
+                   path="/dealerships"
+                   component={DealershipListApp}
+                   match="hi"
+            />
             <Route path="/dealerships/:name" component={DealershipApp} />
         </div>
     </Router>

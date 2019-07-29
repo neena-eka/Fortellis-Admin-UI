@@ -1,11 +1,11 @@
 import React from 'react';
 import {DealershipListDisplay} from './DealershipListDisplay';
 
-function DealershipListApp() {
+function DealershipListApp(props) {
     return (
         <div className="DealershipListApp">
             <header className="DealershipListApp-header">
-                <DealershipListDisplay/>
+                <DealershipListDisplay url={props.match.url} />
             </header>
         </div>
     )
