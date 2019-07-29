@@ -33,7 +33,7 @@ router.get('/dealerships', function(req, res) {
     res.sendFile(path.join(__dirname + '/build/index.html'));
 });
 
-router.get('/dealerships/:name', function(req, res) {
+router.get('/dealerships/*', function(req, res) {
     res.sendFile(path.join(__dirname + '/build/index.html'));
 });
 
