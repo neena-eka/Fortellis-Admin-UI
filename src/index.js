@@ -9,7 +9,11 @@ import * as serviceWorker from './serviceWorker';
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
-const baseURL = window.location.origin + '/' + window.location.pathname.substring(0, window.location.pathname.indexOf('/dealerships'));
+let pathname = window.location.pathname;
+let origin = window.location.origin;
+let pathURL = pathname.substring(0, pathname.includes('/dealerships') ? pathname.indexOf('/dealerships') : pathname.length);
+let baseURL = origin +  pathURL;
+
 
 const routing = (
     <div className="nav-div">
@@ -34,19 +38,24 @@ const routing = (
            <Navbar className="nav-bar">
                 <Nav className="nav">
                     <Nav.Link href={baseURL}>Home</Nav.Link>
-                    <Nav.Link href="/dealerships">Dealerships</Nav.Link>
+                    <Nav.Link href={`${baseURL}dealerships`}>Dealerships</Nav.Link>
                     {/*<Nav.Link href="/requests">Requests</Nav.Link>
                     <Nav.Link href="/requests">Requests</Nav.Link>
                     <Nav.Link href="/requests">Requests</Nav.Link>*/}
                 </Nav>
             </Navbar>
-            <Route exact path="/" component={App} />
             <Route exact
-                   path="/dealerships"
-                   component={DealershipListApp}
-                   match="hi"
+                   path={`${pathURL}/`}
+                   component={App}
             />
-            <Route path="/dealerships/:name" component={DealershipApp} />
+            <Route exact
+                   path={`${pathURL}/dealerships`}
+                   component={DealershipListApp}
+            />
+            <Route exact
+                   path={`${pathURL}/dealerships/:name`}
+                   component={DealershipApp}
+            />
         </div>
     </Router>
     </div>
