@@ -10,8 +10,9 @@ export const DealershipListDisplay = (props) => {
                 <Nav.Link href="/">Dealerships</Nav.Link>
                 <Nav.Link href="/requests">Hi</Nav.Link>
                 <Nav.Link href="/requests">Requests</Nav.Link>
-            <Nav.Link href="/requests">Hello</Nav.Link>
+                <Nav.Link href="/requests">Hello</Nav.Link>
             </Nav>
+
         </div>
     )
 }

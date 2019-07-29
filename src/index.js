@@ -8,11 +8,13 @@ import DealershipApp from './DealershipApp';
 import * as serviceWorker from './serviceWorker';
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import Switch from "react-router-dom/Switch";
+import {Dealerships} from './Dealerships';
 
 let pathname = window.location.pathname;
 let origin = window.location.origin;
-let pathURL = pathname.substring(0, pathname.includes('/dealerships') ? pathname.indexOf('/dealerships') : pathname.length);
-let baseURL = origin +  pathURL;
+export const pathURL = pathname.substring(0, pathname.includes('/dealerships') ? pathname.indexOf('/dealerships') : pathname.length - 1);
+export const baseURL = origin +  pathURL;
 
 
 const routing = (
@@ -38,24 +40,24 @@ const routing = (
            <Navbar className="nav-bar">
                 <Nav className="nav">
                     <Nav.Link href={baseURL}>Home</Nav.Link>
-                    <Nav.Link href={`${baseURL}dealerships`}>Dealerships</Nav.Link>
+                    <Nav.Link href={`${baseURL}/dealerships`}>Dealerships</Nav.Link>
                     {/*<Nav.Link href="/requests">Requests</Nav.Link>
                     <Nav.Link href="/requests">Requests</Nav.Link>
                     <Nav.Link href="/requests">Requests</Nav.Link>*/}
                 </Nav>
             </Navbar>
-            <Route exact
-                   path={`${pathURL}/`}
-                   component={App}
-            />
-            <Route exact
-                   path={`${pathURL}/dealerships`}
-                   component={DealershipListApp}
-            />
-            <Route exact
-                   path={`${pathURL}/dealerships/:name`}
-                   component={DealershipApp}
-            />
+            <Switch>
+                <Route exact
+                       path={`${pathURL}/`}
+                       component={App}
+                />
+                <Route path={`${pathURL}/dealerships`}
+                       component={Dealerships}
+                />
+                <Route path={`${pathURL}/dealerships/:name`}
+                       component={DealershipApp}
+                />
+            </Switch>
         </div>
     </Router>
     </div>
