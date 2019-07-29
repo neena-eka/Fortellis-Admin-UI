@@ -25,7 +25,7 @@ router.use(function(req, res, next) {
     next(); // make sure we go to the next routes and don't stop here
 });
 
-router.get('/*', function(req, res) {
+router.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/build/index.html'));
 });
 
