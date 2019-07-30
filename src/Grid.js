@@ -10,15 +10,32 @@ export class Grid extends React.Component {
 
         this.state = {
             columnDefs: [
-                {headerName: "Date", field: "date", width: 90, sortable: true, comparator: this.dateSort, sortingOrder: ['desc', 'asc'], sort: 'desc'},
-                {headerName: "Solution Name", field: "solutionName", cellRendererFramework: InfoRenderer, cellRendererParams: {handleClick: this.displaySolutionInfo}},
+                {
+                    headerName: "Date",
+                    field: "date",
+                    width: 90,
+                    sortable: true,
+                    comparator: this.dateSort,
+                    sortingOrder: ['desc', 'asc'],
+                    sort: 'desc'
+                },
+                {
+                    headerName: "Solution Name",
+                    field: "solutionName",
+                    cellRendererFramework: InfoRenderer,
+                    cellRendererParams: {handleClick: this.displaySolutionInfo}
+                },
                 {headerName: "Name", field: "name", filter: true, cellRendererFramework: InfoRenderer},
                 {headerName: "ID", field: "entityId", width: 300},
                 {headerName: "Store Name", field: "storeName", width: 130},
                 {headerName: "Store ID", field: "storeId", width: 110},
                 {headerName: "Status", field: "status", width: 90},
                 {
-                    headerName: "Actions", field: "actions", cellRendererFramework: ButtonCellRenderer, cellRendererParams: {handleClick: this.updateRequest}, width: 135
+                    headerName: "Actions",
+                    field: "actions",
+                    cellRendererFramework: ButtonCellRenderer,
+                    cellRendererParams: {handleClick: this.updateRequest},
+                    width: 135
                 }
             ],
             rowData: [],
@@ -34,14 +51,14 @@ export class Grid extends React.Component {
 
     async setUp(statusFilter) {
         let attributes = await fetchEntityInfo();
-        if(attributes === "Information not found") {
+        if (attributes === "Information not found") {
             console.log(attributes);
             return;
         }
-        let row=[];
+        let row = [];
         let item;
-        for(let i = 0; i < attributes.items.length; i ++) {
-            if((statusFilter === 'All' || statusFilter === attributes.items[i].requestStatus.s)
+        for (let i = 0; i < attributes.items.length; i++) {
+            if ((statusFilter === 'All' || statusFilter === attributes.items[i].requestStatus.s)
                 && (!this.props.nameFilter || this.props.nameFilter === attributes.items[i].name.s)) {
                 item = attributes.items[i];
                 row.push({
@@ -63,9 +80,9 @@ export class Grid extends React.Component {
                 });
             }
         }
-        if(row.length === 0) {
+        if (row.length === 0) {
             let data = ["", "", "No " + statusFilter.toLowerCase() + " requests", "", "", ""];
-            if(attributes.items.length === 0) {
+            if (attributes.items.length === 0) {
                 data = ["", "", "There are no requests", "", "", ""];
             }
             this.setState({solutionData: data})
@@ -74,17 +91,38 @@ export class Grid extends React.Component {
 
         this.setState({
             columnDefs: [
-                {headerName: "Date", field: "date", width: 90, sortable: true, comparator: this.dateSort, sortingOrder: ['desc', 'asc'], sort: 'desc'},
                 {
-                    headerName: "Solution Name", field: "solutionName", cellRendererFramework: InfoRenderer, cellRendererParams: {handleClick: this.displaySolutionInfo}
+                    headerName: "Date",
+                    field: "date",
+                    width: 90,
+                    sortable: true,
+                    comparator: this.dateSort,
+                    sortingOrder: ['desc', 'asc'],
+                    sort: 'desc'
                 },
-                {headerName: "Name", field: "name", filter: true, cellRendererFramework: InfoRenderer, hide: this.props.nameFilter},
+                {
+                    headerName: "Solution Name",
+                    field: "solutionName",
+                    cellRendererFramework: InfoRenderer,
+                    cellRendererParams: {handleClick: this.displaySolutionInfo}
+                },
+                {
+                    headerName: "Name",
+                    field: "name",
+                    filter: true,
+                    cellRendererFramework: InfoRenderer,
+                    hide: this.props.nameFilter
+                },
                 {headerName: "ID", field: "entityId", width: 300, hide: this.props.nameFilter},
                 {headerName: "Store Name", field: "storeName", width: 130, hide: this.props.nameFilter},
                 {headerName: "Store ID", field: "storeId", width: 110, hide: this.props.nameFilter},
                 {headerName: "Status", field: "status", width: 90},
                 {
-                    headerName: "Actions", field: "actions", cellRendererFramework: ButtonCellRenderer, cellRendererParams: {handleClick: this.updateRequest}, width: 135
+                    headerName: "Actions",
+                    field: "actions",
+                    cellRendererFramework: ButtonCellRenderer,
+                    cellRendererParams: {handleClick: this.updateRequest},
+                    width: 135
                 },
             ],
             rowData: row,
@@ -95,50 +133,50 @@ export class Grid extends React.Component {
     displaySolutionInfo(solutionId) {
         let attributes = this.state.rowData;
         let row = {};
-        for(let i=0; i<attributes.length; i++){
-            if(solutionId === attributes[i].solutionId){
+        for (let i = 0; i < attributes.length; i++) {
+            if (solutionId === attributes[i].solutionId) {
                 row = attributes[i];
             }
         }
         let data = ['Solution ID: ' + row.solutionId,
-         'Solution Name: ' + row.solutionName,
-         'Developer: ' + row.developer,
-         'Subscription ID: ' + row.subscriptionId,
-         'Connection ID: ' + row.connectionId];
+            'Solution Name: ' + row.solutionName,
+            'Developer: ' + row.developer,
+            'Contact Email: ' + row.email,
+            'Subscription ID: ' + row.subscriptionId,
+            'Connection ID: ' + row.connectionId];
         this.setState({solutionData: data});
 
         document.getElementById('popup-button').click();
     }
 
     setContactInfo(nameFilter) {
-        if(!this.props.nameFilter) {
+        if (!this.props.nameFilter) {
             return;
         }
         let attributes = this.state.rowData;
         let row = {};
-        for(let i=0; i<attributes.length; i++){
-            if(nameFilter === attributes[i].name){
+        for (let i = 0; i < attributes.length; i++) {
+            if (nameFilter === attributes[i].name) {
                 row = attributes[i];
                 break;
             }
         }
-        let data = ['ID: ' + row.id,
+        let data = ['ID: ' + row.entityId,
             'Store Name: ' + row.storeName,
             'Store ID: ' + row.storeId,
             'Phone Number: ' + row.phoneNumber,
-            'Contact Email: ' + row.email,
             'Address: ' + row.address];
-        if(!data[0].includes('undefined'))
+        if (!data[0].includes('undefined'))
             this.setState({contactData: data});
     }
 
     dateSort(valueA, valueB) {
-        let yearA = valueA.substring(6,8);
-        let monthA = valueA.substring(0,2);
-        let dayA = valueA.substring(3,5);
-        let yearB = valueB.substring(6,8);
-        let monthB = valueB.substring(0,2);
-        let dayB = valueB.substring(3,5);
+        let yearA = valueA.substring(6, 8);
+        let monthA = valueA.substring(0, 2);
+        let dayA = valueA.substring(3, 5);
+        let yearB = valueB.substring(6, 8);
+        let monthB = valueB.substring(0, 2);
+        let dayB = valueB.substring(3, 5);
 
         let dateA = yearA + monthA + dayA;
         let dateB = yearB + monthB + dayB;
@@ -165,7 +203,8 @@ export class Grid extends React.Component {
 
     render() {
         return (
-            <GridDisplay solutionData={this.state.solutionData} contactData={this.state.contactData} setUp={this.setUp} rowData={this.state.rowData} columnDefs={this.state.columnDefs}/>
+            <GridDisplay solutionData={this.state.solutionData} contactData={this.state.contactData} setUp={this.setUp}
+                         rowData={this.state.rowData} columnDefs={this.state.columnDefs}/>
         );
     }
 }
