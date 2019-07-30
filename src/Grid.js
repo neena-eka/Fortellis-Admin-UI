@@ -13,7 +13,7 @@ export class Grid extends React.Component {
                 {headerName: "Date", field: "date", width: 90, sortable: true, comparator: this.dateSort, sortingOrder: ['desc', 'asc'], sort: 'desc'},
                 {headerName: "Solution Name", field: "solutionName", cellRendererFramework: InfoRenderer, cellRendererParams: {handleClick: this.displaySolutionInfo}},
                 {headerName: "Name", field: "name", filter: true, cellRendererFramework: InfoRenderer},
-                {headerName: "ID", field: "id", width: 300},
+                {headerName: "ID", field: "entityId", width: 300},
                 {headerName: "Store Name", field: "storeName", width: 130},
                 {headerName: "Store ID", field: "storeId", width: 110},
                 {headerName: "Status", field: "status", width: 90},
@@ -45,7 +45,8 @@ export class Grid extends React.Component {
                 && (!this.props.nameFilter || this.props.nameFilter === attributes.items[i].name.s)) {
                 item = attributes.items[i];
                 row.push({
-                    id: item.entityId.s,
+                    id: item.id.s,
+                    entityId: item.entityId.s,
                     name: item.name.s,
                     address: item.address.s,
                     phoneNumber: item.phoneNumber.s,
@@ -78,7 +79,7 @@ export class Grid extends React.Component {
                     headerName: "Solution Name", field: "solutionName", cellRendererFramework: InfoRenderer, cellRendererParams: {handleClick: this.displaySolutionInfo}
                 },
                 {headerName: "Name", field: "name", filter: true, cellRendererFramework: InfoRenderer, hide: this.props.nameFilter},
-                {headerName: "ID", field: "id", width: 300, hide: this.props.nameFilter},
+                {headerName: "ID", field: "entityId", width: 300, hide: this.props.nameFilter},
                 {headerName: "Store Name", field: "storeName", width: 130, hide: this.props.nameFilter},
                 {headerName: "Store ID", field: "storeId", width: 110, hide: this.props.nameFilter},
                 {headerName: "Status", field: "status", width: 90},
