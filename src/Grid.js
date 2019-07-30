@@ -22,7 +22,8 @@ export class Grid extends React.Component {
                 },
             ],
             rowData: [],
-            data: []
+            data: [],
+            /*nameFilter: this.props.nameFilter*/
         }
         this.setUp = this.setUp.bind(this);
         this.updateRequest = this.updateRequest.bind(this);
@@ -31,7 +32,7 @@ export class Grid extends React.Component {
         this.displayContactInfo = this.displayContactInfo.bind(this);
     }
 
-    async setUp(filter) {
+    async setUp(statusFilter) {
         let attributes = await fetchEntityInfo();
         if(attributes === "Information not found") {
             console.log(attributes);
@@ -40,7 +41,8 @@ export class Grid extends React.Component {
         let row=[];
         let item;
         for(let i = 0; i < attributes.items.length; i ++) {
-            if(filter === 'All' || filter === attributes.items[i].requestStatus.s) {
+            if((statusFilter === 'All' || statusFilter === attributes.items[i].requestStatus.s)
+                && (!this.props.nameFilter || this.props.nameFilter === attributes.items[i].name.s)) {
                 item = attributes.items[i];
                 row.push({
                     id: item.id.s,
@@ -61,7 +63,7 @@ export class Grid extends React.Component {
             }
         }
         if(row.length === 0) {
-            let data = ["", "", "No " + filter.toLowerCase() + " requests", "", "", ""];
+            let data = ["", "", "No " + statusFilter.toLowerCase() + " requests", "", "", ""];
             if(attributes.items.length === 0) {
                 data = ["", "", "There are no requests", "", "", ""];
             }
@@ -75,10 +77,10 @@ export class Grid extends React.Component {
                 {
                     headerName: "Solution Name", field: "solutionName", cellRendererFramework: InfoRenderer, cellRendererParams: {handleClick: this.displaySolutionInfo}
                 },
-                {headerName: "Name", field: "name", filter: true, cellRendererFramework: InfoRenderer, cellRendererParams: {handleClick: this.displayContactInfo}},
-                {headerName: "ID", field: "id", width: 300},
-                {headerName: "Store Name", field: "storeName", width: 130},
-                {headerName: "Store ID", field: "storeId", width: 110},
+                {headerName: "Name", field: "name", filter: true, cellRendererFramework: InfoRenderer, cellRendererParams: {handleClick: this.displayContactInfo}, hide: this.props.nameFilter},
+                {headerName: "ID", field: "id", width: 300, hide: this.props.nameFilter},
+                {headerName: "Store Name", field: "storeName", width: 130, hide: this.props.nameFilter},
+                {headerName: "Store ID", field: "storeId", width: 110, hide: this.props.nameFilter},
                 {headerName: "Status", field: "status", width: 90},
                 {
                     headerName: "Actions", field: "actions", cellRendererFramework: ButtonCellRenderer, cellRendererParams: {handleClick: this.updateRequest}, width: 135
@@ -116,6 +118,9 @@ export class Grid extends React.Component {
             }
         }
         let data = ['Name: ' + row.name,
+            'ID: ' + row.id,
+            'Store Name: ' + row.storeName,
+            'Store ID: ' + row.storeId,
             'Phone Number: ' + row.phoneNumber,
             'Contact Email: ' + row.email,
             'Address: ' + row.address];
