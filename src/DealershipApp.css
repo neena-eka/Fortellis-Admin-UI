@@ -1,8 +1,25 @@
-.dealership-display {
-    text-align: center;
+
+html, body {
+    align-items: center !important;
+    text-align: center !important;
+    color: white !important;
 }
 
-.flex-column {
-    min-width: 200px;
-    width: auto;
+.container {
+    max-width: 517px;
+    position: relative;
+    top: 0;
+}
+
+.dealership-grid {
+    max-width: 517px !important;
+    position: relative !important;
+}
+
+.grid-div {
+
+}
+
+header {
+    text-align: center;
 }

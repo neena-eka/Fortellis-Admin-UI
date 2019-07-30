@@ -33,7 +33,7 @@ class DealershipListApp extends React.Component {
         for(let i = 0; i < names.length; i++) {
             dealershipNameData.push(urlNames[i] + '||' + names[i]);
         }
-        this.setState({dealershipNameData})
+        this.setState({dealershipNameData: dealershipNameData.sort()})
     }
 
     render() {
