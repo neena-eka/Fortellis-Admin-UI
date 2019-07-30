@@ -29,14 +29,6 @@ router.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/build/index.html'));
 });
 
-router.get('/dealerships', function(req, res) {
-    res.sendFile(path.join(__dirname + '/build/index.html'));
-});
-
-router.get('/dealerships/*', function(req, res) {
-    res.sendFile(path.join(__dirname + '/build/index.html'));
-});
-
 router.get('/health', function(req, res) {
     res.json({ status: 'UP' });
 });

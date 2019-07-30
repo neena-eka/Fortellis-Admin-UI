@@ -1,9 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Route, BrowserRouter as Router } from 'react-router-dom'
 import App from './App';
-import DealershipListApp from './DealershipListApp';
 import DealershipApp from './DealershipApp';
 import * as serviceWorker from './serviceWorker';
 import Navbar from "react-bootstrap/Navbar";
@@ -29,21 +28,12 @@ const routing = (
             rel="stylesheet"
             href="./App.css"
         />
-
         <Router>
         <div>
-            {/*<ul>
-                <li>
-                    <Link to="/requests">Requests</Link>
-                </li>
-            </ul>*/}
            <Navbar className="nav-bar">
                 <Nav className="nav">
-                    <Nav.Link href={baseURL}>Home</Nav.Link>
+                    <Nav.Link href={`${baseURL}/`}>Home</Nav.Link>
                     <Nav.Link href={`${baseURL}/dealerships`}>Dealerships</Nav.Link>
-                    {/*<Nav.Link href="/requests">Requests</Nav.Link>
-                    <Nav.Link href="/requests">Requests</Nav.Link>
-                    <Nav.Link href="/requests">Requests</Nav.Link>*/}
                 </Nav>
             </Navbar>
             <Switch>

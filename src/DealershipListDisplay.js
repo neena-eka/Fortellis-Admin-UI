@@ -4,10 +4,6 @@ import {pathURL} from "./index";
 import './DealershipListApp.css'
 
 export const DealershipListDisplay = (props) => {
-    /*const navLinks = props.urlNames.map(url => {
-        return <Nav.Link href={url}> {url.toUpperCase().replace('-', ' ').substring(1)} </Nav.Link>;
-    });*/
-
     return (
         <div className="dealership-display">
             <h1>Dealerships</h1>
