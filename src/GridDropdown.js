@@ -6,7 +6,7 @@ export class GridDropdown extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {value:''};
+        this.state = {value: ''};
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -17,6 +17,7 @@ export class GridDropdown extends React.Component {
 
     render() {
         const options = ['Pending', 'Accepted', 'Declined', 'All'];
-        return <Dropdown className="GridDropdown" options={options} onChange={this.handleChange} value={this.state.value} placeholder="Pending"/>
+        return <Dropdown className="GridDropdown" options={options} onChange={this.handleChange}
+                         value={this.state.value} placeholder="Pending"/>
     }
 }

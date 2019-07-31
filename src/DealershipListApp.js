@@ -24,16 +24,16 @@ class DealershipListApp extends React.Component {
             if (!names.includes(dealershipName)) {
                 names.push(dealershipName);
                 urlName = '/' + dealershipName.toLowerCase();
-                while(urlName.includes(' ')) {
+                while (urlName.includes(' ')) {
                     urlName = urlName.replace(' ', '-');
                 }
                 urlNames.push(urlName);
             }
         }
-        for(let i = 0; i < names.length; i++) {
+        for (let i = 0; i < names.length; i++) {
             dealershipNameData.push(urlNames[i] + '||' + names[i]);
         }
-        if(dealershipNameData.length === 0) {
+        if (dealershipNameData.length === 0) {
             dealershipNameData.push('/No dealerships to display')
         }
         this.setState({dealershipNameData: dealershipNameData.sort()});
@@ -50,4 +50,5 @@ class DealershipListApp extends React.Component {
         )
     }
 }
+
 export default DealershipListApp;

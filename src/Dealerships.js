@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 import DealershipListApp from "./DealershipListApp";
 import {pathURL} from "./index";
 import DealershipApp from "./DealershipApp";

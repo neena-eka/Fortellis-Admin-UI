@@ -88,7 +88,7 @@ export class Grid extends React.Component {
             if (attributes.items.length === 0) {
                 data = ["There are no requests"];
             }
-            if(!nameExists && this.props.nameFilter) {
+            if (!nameExists && this.props.nameFilter) {
                 data = ["No requests from this dealership"];
             }
             this.setState({solutionData: data})
