@@ -57,33 +57,39 @@ export class Grid extends React.Component {
         }
         let row = [];
         let item;
+        let nameExists = false;
         for (let i = 0; i < attributes.items.length; i++) {
-            if ((statusFilter === 'All' || statusFilter === attributes.items[i].requestStatus.s)
-                && (!this.props.nameFilter || this.props.nameFilter === attributes.items[i].name.s)) {
-                item = attributes.items[i];
-                row.push({
-                    id: item.id.s,
-                    entityId: item.entityId.s,
-                    name: item.name.s,
-                    address: item.address.s,
-                    phoneNumber: item.phoneNumber.s,
-                    date: item.date.s,
-                    storeId: item.storeId.s,
-                    storeName: item.storeName.s,
-                    status: item.requestStatus.s,
-                    solutionName: item.solutionName.s,
-                    solutionId: item.solutionId.s,
-                    developer: item.developer.s,
-                    email: item.email.s,
-                    subscriptionId: item.subscriptionId.s,
-                    connectionId: item.connectionId.s
-                });
+            if (!this.props.nameFilter || this.props.nameFilter === attributes.items[i].name.s) {
+                nameExists = this.props.nameFilter === attributes.items[i].name.s ? true : nameExists;
+                if (statusFilter === 'All' || statusFilter === attributes.items[i].requestStatus.s) {
+                    item = attributes.items[i];
+                    row.push({
+                        id: item.id.s,
+                        entityId: item.entityId.s,
+                        name: item.name.s,
+                        address: item.address.s,
+                        phoneNumber: item.phoneNumber.s,
+                        date: item.date.s,
+                        storeId: item.storeId.s,
+                        storeName: item.storeName.s,
+                        status: item.requestStatus.s,
+                        solutionName: item.solutionName.s,
+                        solutionId: item.solutionId.s,
+                        developer: item.developer.s,
+                        email: item.email.s,
+                        subscriptionId: item.subscriptionId.s,
+                        connectionId: item.connectionId.s
+                    });
+                }
             }
         }
         if (row.length === 0) {
-            let data = ["", "", "No " + statusFilter.toLowerCase() + " requests", "", "", ""];
+            let data = ["No " + statusFilter.toLowerCase() + " requests"];
             if (attributes.items.length === 0) {
-                data = ["", "", "There are no requests", "", "", ""];
+                data = ["There are no requests"];
+            }
+            if(!nameExists && this.props.nameFilter) {
+                data = ["No requests from this dealership"];
             }
             this.setState({solutionData: data})
             document.getElementById('popup-button').click();
