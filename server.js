@@ -30,7 +30,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/health', function(req, res) {
-    res.json({ status: 'UP' });
+    res.json({ status: 'DOWN' });
 });
 
 router.get('/info', function(req, res) {
