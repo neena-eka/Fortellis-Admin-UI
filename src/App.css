@@ -5,16 +5,15 @@
 
 html{
   width: 100%;
-  background-color: #9b9b9b;
+  background-color: rgba(144, 71, 120, 0.56);
 }
 body{
   height:100%; /* force the BODY element to match the height of the HTML element */
   width: 100%;
-  background-color: #9b9b9b;
+  background-color: rgba(144, 71, 120, 0.56);
 }
 
 .App-header {
-  background-color: #9b9b9b;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -65,7 +64,6 @@ body{
   top: 0px;
   /*align-items: center;*/
   position: relative !important;
-  background-color: #9b9b9b;
   padding: 0 !important;
 }
 
@@ -121,7 +119,7 @@ body{
 }
 
 .nav-div {
-  background-color: #9b9b9b;
+  background-color: rgba(144, 71, 120, 0.56);
   position: relative;
 }
 
