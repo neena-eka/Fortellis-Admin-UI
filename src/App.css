@@ -5,12 +5,12 @@
 
 html{
   width: 100%;
-  background-color: rgba(144, 71, 120, 0.56);
+  background-color: #9b9b9b;
 }
 body{
   height:100%; /* force the BODY element to match the height of the HTML element */
   width: 100%;
-  background-color: rgba(144, 71, 120, 0.56);
+  background-color: #9b9b9b;
 }
 
 .App-header {
@@ -75,6 +75,10 @@ body{
   font-size: 20px;
 }
 
+.popup-content {
+  color: black;
+}
+
 .Display {
   width: 100%;
   max-width: inherit !important;
@@ -119,7 +123,7 @@ body{
 }
 
 .nav-div {
-  background-color: rgba(144, 71, 120, 0.56);
+  background-color: #9b9b9b;
   position: relative;
 }
 
