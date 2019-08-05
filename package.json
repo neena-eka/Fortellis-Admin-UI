@@ -5,6 +5,7 @@
   "homepage": ".",
   "dependencies": {
     "@babel/core": "^7.0.0-0",
+    "@cdk-uip/react": "^6.11.0",
     "ag-grid": "^18.1.2",
     "ag-grid-community": "^21.0.1",
     "ag-grid-enterprise": "^21.0.1",
@@ -25,7 +26,8 @@
     "react-scripts": "3.0.1",
     "react-select": "^3.0.4",
     "reactjs-popup": "^1.4.1",
-    "typescript": "*"
+    "typescript": "*",
+    "@cdk-uip/react-global-header": "latest"
   },
   "scripts": {
     "start": "node_modules/.bin/react-scripts start",

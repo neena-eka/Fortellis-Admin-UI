@@ -116,6 +116,7 @@ body{
 
 .nav-bar {
   align-items: center;
+    position: relative;
 }
 
 .nav a{
@@ -123,8 +124,9 @@ body{
 }
 
 .nav-div {
-  background-color: #9b9b9b;
-  position: relative;
+    background-color: #9b9b9b;
+    position: relative;
+    top: 48px;
 }
 
 
