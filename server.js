@@ -51,6 +51,7 @@ router.get('/info', function(req, res) {
 app.use('/', router);
 app.use('/dealerships', router);
 app.use('/dealerships/:name', router);
+app.use('/logo_wk4_icon.ico', router);
 
 
 // START THE SERVER
