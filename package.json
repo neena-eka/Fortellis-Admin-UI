@@ -5,6 +5,8 @@
   "homepage": ".",
   "dependencies": {
     "@babel/core": "^7.0.0-0",
+    "@cdk-uip/react": "^6.11.0",
+    "@cdk-uip/react-global-header": "latest",
     "ag-grid": "^18.1.2",
     "ag-grid-community": "^21.0.1",
     "ag-grid-enterprise": "^21.0.1",

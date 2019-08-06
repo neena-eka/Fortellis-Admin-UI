@@ -9,6 +9,8 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Switch from "react-router-dom/Switch";
 import {Dealerships} from './Dealerships'
+import "@cdk-uip/react/cdk.css";
+import { CDKGlobalHeader } from "@cdk-uip/react-global-header";
 
 let pathname = window.location.pathname;
 let origin = window.location.origin;
@@ -53,7 +55,7 @@ const routing = (
     </div>
 )
 
-ReactDOM.render(routing, document.getElementById('root'));
+ReactDOM.render(<div><CDKGlobalHeader appName="Fortellis Admin Page" />{routing}</div>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
